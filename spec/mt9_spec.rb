@@ -2,6 +2,6 @@
 
 RSpec.describe MT9 do
   it "has a version number" do
-    expect(MT9::VERSION).not_to be nil
+    expect(MT9::VERSION).not_to be_nil
   end
 end
