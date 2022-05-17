@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Validators do
+RSpec.describe MT9::Validators do
   describe "HeaderRecordContract" do
     let(:correct_header_record) do
       {
@@ -11,7 +11,7 @@ RSpec.describe Validators do
       }
     end
 
-    let(:validator) { Validators::HeaderRecordContract.new }
+    let(:validator) { MT9::Validators::HeaderRecordContract.new }
 
     it "validates a correct header record" do
       expect(validator.call(correct_header_record).success?).to be(true)
