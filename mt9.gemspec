@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
     "MT9 is a data standard used within the NZ banking industry for the creation of Bulk Payments and Receipts."
   spec.homepage = "https://github.com/zeptofs/mt9"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 2.7.0"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
