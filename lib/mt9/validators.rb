@@ -5,7 +5,9 @@ require "dry-validation"
 module MT9
   module Validators
     class HeaderRecordContract < Dry::Validation::Contract
-      FILE_TYPES = [12, 20].freeze
+      DIRECT_CREDIT = 12
+      DIRECT_DEBIT = 20
+      FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
 
       schema do
         required(:file_type).filled(:integer, included_in?: FILE_TYPES)
