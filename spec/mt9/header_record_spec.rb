@@ -14,7 +14,7 @@ RSpec.describe MT9::HeaderRecord do
     subject(:result) { described_class.new(**header_record).generate }
 
     it "creates correctly formatted string" do
-      expect(result).to eq("12123456789012345 251220       ACME Pty Ltd                                                                                                                     \r\n")
+      expect(result).to eq("12123456789012345 251220       ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
     end
 
     it "fails with invalid file type" do
