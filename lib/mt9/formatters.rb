@@ -7,8 +7,8 @@ module Fixy
 
       def format_numeric(input, length)
         input = input.to_s
-        raise ArgumentError, "Invalid Input (only digits are accepted)" unless input =~ /^\d+$/
-        raise ArgumentError, "Invalid Length (length must be #{length} not #{input.length})" if input.length != length
+        raise ArgumentError, "Invalid input (only digits are accepted)" unless input =~ /^\d+$/
+        raise ArgumentError, "Invalid length (length must be #{length})" if input.length != length
 
         input
       end

@@ -6,6 +6,8 @@ module MT9
     DIRECT_DEBIT = "20"
     FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
 
+    set_line_ending Fixy::Record::LINE_ENDING_CRLF
+
     attr_reader :file_type, :account_number, :due_date, :client_short_name
 
     field :file_type, 2, "1-2", :file_type
@@ -20,7 +22,7 @@ module MT9
     field_value :filler7, SPACE * 7
     field_value :filler109, SPACE * 109
 
-    def initialize(file_type:, account_number:, due_date:, client_short_name:)
+    def initialize(file_type:, account_number:, due_date:, client_short_name: "")
       @file_type = file_type
       @account_number = account_number
       @due_date = due_date
