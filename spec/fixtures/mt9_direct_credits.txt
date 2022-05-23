@@ -1,0 +1,4 @@
+12123113000631400 071020       asbd 2                                                                                                                           
+13123113000214500 0510000000102PayeeName 0         000000000000Payeecde0   PayeeRef0   PayeePrt0    PayerName           Payercde    PayerRef    PayerPrt        
+13123113000214500 0510000000201PayeeName 1         000000000000Payeecde1   PayeeRef1   PayeePrt1    PayerName           Payercde    PayerRef    PayerPrt        
+139962260004290             303                                                                                                                                 

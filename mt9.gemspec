@@ -25,8 +25,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "dry-validation", "~> 1.8.0"
   spec.add_dependency "fixy", "~> 0.0.9"
 
+  spec.add_development_dependency "pry-byebug", "~> 3.9.0"
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
   spec.metadata["rubygems_mfa_required"] = "true"
