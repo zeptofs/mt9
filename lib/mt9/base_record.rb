@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "fixy/formatter"
+require_relative "fixy/formatter/numeric"
 
 module MT9
   class BaseRecord < Fixy::Record
