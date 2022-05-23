@@ -30,7 +30,7 @@ module Fixy
       end
 
       def format_account_number(input, length)
-        raise "Length of field needs to be 16" if length != 16
+        raise ArgumentError, "Length of field needs to be 16" if length != 16
 
         input = input.to_s
         unless /^(\d{15}|\d{16})$/.match?(input)

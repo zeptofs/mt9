@@ -52,11 +52,11 @@ RSpec.describe Fixy::Formatter::Numeric do
     it "raises error with invalid inputs" do
       expect do
         test_instance.format_account_number("12345678901234", 14)
-      end.to raise_error(RuntimeError, "Length of field needs to be 16")
+      end.to raise_error(ArgumentError, "Length of field needs to be 16")
 
       expect do
         test_instance.format_account_number("12345678901234567", 17)
-      end.to raise_error(RuntimeError, "Length of field needs to be 16")
+      end.to raise_error(ArgumentError, "Length of field needs to be 16")
 
       expect do
         test_instance.format_account_number("1234567890abcde", 16)
