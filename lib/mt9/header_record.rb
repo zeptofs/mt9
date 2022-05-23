@@ -2,17 +2,12 @@
 
 module MT9
   class HeaderRecord < BaseRecord
-    DIRECT_CREDIT = "12"
-    DIRECT_DEBIT = "20"
-    FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
-
     set_line_ending Fixy::Record::LINE_ENDING_CRLF
 
     attr_reader :file_type, :account_number, :due_date, :client_short_name
 
     field :file_type, 2, "1-2", :file_type
-    field :account_number, 15, "3-17", :account_number
-    field :filler1, 1, "18", :alphanumeric
+    field :account_number, 16, "3-18", :account_number
     field :due_date, 6, "19-24", :numeric
     field :filler7, 7, "25-31", :alphanumeric
     field :client_short_name, 20, "32-51", :alphanumeric

@@ -5,6 +5,10 @@ module Fixy
     module Numeric
       RESERVED_BANK_CODES = %w[99].freeze
 
+      DIRECT_CREDIT = "12"
+      DIRECT_DEBIT = "20"
+      FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
+
       def format_numeric(input, length)
         input = input.to_s
         raise ArgumentError, "Invalid input (only digits are accepted)" unless input =~ /^\d+$/
@@ -15,10 +19,10 @@ module Fixy
 
       def format_file_type(input, _length)
         input = input.to_s
-        unless MT9::HeaderRecord::FILE_TYPES.include?(input)
+        unless FILE_TYPES.include?(input)
           raise(
             ArgumentError,
-            "Invalid filetype. Must be one of the following: #{MT9::HeaderRecord::FILE_TYPES.join(', ')}"
+            "Invalid filetype. Must be one of the following: #{FILE_TYPES.join(', ')}"
           )
         end
 
@@ -26,12 +30,17 @@ module Fixy
       end
 
       def format_account_number(input, length)
-        input = format_numeric(input, length)
+        raise "Length of field needs to be 16" if length != 16
+
+        input = input.to_s
+        unless /^(\d{15}|\d{16})$/.match?(input)
+          raise ArgumentError, "Invalid account number. Can only be 15 or 16 digits"
+        end
         if input.start_with?(*RESERVED_BANK_CODES)
           raise ArgumentError, "Invalid account number. Cannot start with a reserved bank code"
         end
 
-        input
+        input.ljust(length, " ")
       end
     end
   end
