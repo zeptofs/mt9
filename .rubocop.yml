@@ -26,3 +26,7 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Layout/ExtraSpacing:
+  Exclude:
+    - 'lib/mt9/detail_record.rb'

@@ -3,9 +3,9 @@
 require "spec_helper"
 
 RSpec.describe MT9::DetailRecord do
-  subject(:transaction) { MT9::DetailRecord.new(**transaction_params) }
+  subject(:detail_record) { described_class.new(**detail_record_args) }
 
-  let(:transaction_params) do
+  let(:detail_record_args) do
     {
       account_number: account_number,
       transaction_code: transaction_code,
@@ -14,14 +14,14 @@ RSpec.describe MT9::DetailRecord do
         name: "This Party",
         code: "1234",
         alpha_reference: "alpha_ref",
-        particulars: "particulars",
+        particulars: "particulars"
       },
       other_party: {
         name: "Other Party Name, of long length",
         code: "3219876543210",
         alpha_reference: "other_alpha_ref",
-        particulars: "other_particulars",
-      },
+        particulars: "other_particulars"
+      }
     }
   end
 
@@ -30,23 +30,25 @@ RSpec.describe MT9::DetailRecord do
   let(:amount) { 1000 }
 
   describe "#generate" do
-    context "full account number" do
+    context "with full account number" do
       let(:account_number) { "1231130002145990" }
 
       it "outputs correct row data" do
-        expect(subject.generate).to include(
+        expect(detail_record.generate).to include(
           "1312311300021459900520000001000This Party          000000000000"\
-          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
+          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n"
+        )
       end
     end
 
-    context "short suffix account number" do
+    context "with short suffix account number" do
       let(:account_number) { "123113000214598" }
 
       it "pads the space correctly" do
-        expect(subject.generate).to include(
+        expect(detail_record.generate).to include(
           "13123113000214598 0520000001000This Party          000000000000"\
-          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
+          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n"
+        )
       end
     end
 
@@ -54,9 +56,10 @@ RSpec.describe MT9::DetailRecord do
       let(:transaction_code) { 51 }
 
       it "prepends 0" do
-        expect(subject.generate).to include(
+        expect(detail_record.generate).to include(
           "13123113000214598 0510000001000This Party          000000000000"\
-          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
+          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n"
+        )
       end
     end
 
@@ -64,9 +67,10 @@ RSpec.describe MT9::DetailRecord do
       let(:amount) { 1 }
 
       it "right adjusts the amount appropriately" do
-        expect(subject.generate).to include(
+        expect(detail_record.generate).to include(
           "13123113000214598 0520000000001This Party          000000000000"\
-          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
+          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n"
+        )
       end
     end
   end
