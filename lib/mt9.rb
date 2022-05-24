@@ -8,6 +8,13 @@ require_relative "mt9/header_record"
 require_relative "mt9/validators"
 
 module MT9
-  class Error < StandardError; end
-  # Your code goes here...
+  class ValidationError < StandardError
+    attr_reader :result
+
+    def initialize(result)
+      @result = result
+      errors = result.errors.messages.map { |message| "#{message.path.join('.')} #{message.text}" }
+      super("Validation failed: #{errors.join(', ')}")
+    end
+  end
 end

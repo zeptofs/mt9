@@ -6,9 +6,9 @@ module MT9
 
     attr_reader :file_type, :account_number, :due_date, :client_short_name
 
-    field :file_type, 2, "1-2", :file_type
-    field :account_number, 16, "3-18", :account_number
-    field :due_date, 6, "19-24", :numeric
+    field :file_type, 2, "1-2", :alphanumeric
+    field :account_number, 16, "3-18", :alphanumeric
+    field :due_date, 6, "19-24", :alphanumeric
     field :filler7, 7, "25-31", :alphanumeric
     field :client_short_name, 20, "32-51", :alphanumeric
     field :filler109, 109, "52-160", :alphanumeric
@@ -17,11 +17,14 @@ module MT9
     field_value :filler7, SPACE * 7
     field_value :filler109, SPACE * 109
 
-    def initialize(file_type:, account_number:, due_date:, client_short_name: "")
-      @file_type = file_type
-      @account_number = account_number
-      @due_date = due_date
-      @client_short_name = client_short_name
+    def initialize(...)
+      validator = Validators::HeaderRecordContract.new
+      result = validator.call(...)
+      raise MT9::ValidationError, result unless result.success?
+
+      result.to_h.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
   end
 end
