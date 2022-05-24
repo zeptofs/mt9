@@ -22,7 +22,7 @@ module MT9
       end
 
       rule(:due_date) do
-        key.failure("must be 6 numeric characters") unless /^\d{6}$/.match(value)
+        key.failure("must be 6 or 8 numeric characters") unless /^(\d{6}|\d{8})$/.match(value)
       end
     end
   end

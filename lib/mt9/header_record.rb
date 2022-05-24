@@ -10,12 +10,12 @@ module MT9
 
     field :file_type, 2, "1-2", :alphanumeric
     field :account_number, 16, "3-18", :alphanumeric
-    field :due_date, 6, "19-24", :alphanumeric
-    field :filler7, 7, "25-31", :alphanumeric
+    field :due_date, 8, "19-26", :alphanumeric
+    field :filler5, 5, "27-31", :alphanumeric
     field :client_short_name, 20, "32-51", :alphanumeric
     field :filler109, 109, "52-160", :alphanumeric
 
-    field_value :filler7, SPACE * 7
+    field_value :filler5, SPACE * 5
     field_value :filler109, SPACE * 109
 
     def initialize(...)

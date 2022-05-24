@@ -16,6 +16,13 @@ RSpec.describe MT9::HeaderRecord do
     it "creates correctly formatted string" do
       expect(result).to eq("12123456789012345 251220       ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
     end
+
+    it "creates correctly formatted string with a long account number and due date" do
+      header_record[:account_number] = "1234567890123456"
+      header_record[:due_date] = "25122020"
+
+      expect(result).to eq("12123456789012345625122020     ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
+    end
   end
 
   it "raises ValidationError with an incorrect header record" do
