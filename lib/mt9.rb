@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
+require "dry-validation"
 require "fixy"
 
-require_relative "mt9/version"
 require_relative "mt9/base_record"
 require_relative "mt9/header_record"
-require_relative "mt9/validators"
+require_relative "mt9/version"
 
 module MT9
   class ValidationError < StandardError
@@ -13,7 +13,7 @@ module MT9
 
     def initialize(result)
       @result = result
-      errors = result.errors.messages.map { |message| "#{message.path.join('.')} #{message.text}" }
+      errors = result.errors(full: true).messages
       super("Validation failed: #{errors.join(', ')}")
     end
   end

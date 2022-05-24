@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "validators/header_record_contract"
+
 module MT9
   class HeaderRecord < BaseRecord
     set_line_ending Fixy::Record::LINE_ENDING_CRLF
@@ -13,7 +15,6 @@ module MT9
     field :client_short_name, 20, "32-51", :alphanumeric
     field :filler109, 109, "52-160", :alphanumeric
 
-    field_value :filler1, SPACE
     field_value :filler7, SPACE * 7
     field_value :filler109, SPACE * 109
 
