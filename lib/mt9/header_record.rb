@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "validators/header_record_contract"
-
 module MT9
   class HeaderRecord < BaseRecord
     set_line_ending Fixy::Record::LINE_ENDING_CRLF

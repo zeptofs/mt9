@@ -3,9 +3,12 @@
 require "dry-validation"
 require "fixy"
 
-require_relative "mt9/base_record"
-require_relative "mt9/header_record"
-require_relative "mt9/version"
+require "mt9/values"
+require "mt9/validators/base_contract"
+require "mt9/validators/header_record_contract"
+require "mt9/base_record"
+require "mt9/header_record"
+require "mt9/version"
 
 module MT9
   class ValidationError < StandardError
