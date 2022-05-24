@@ -33,7 +33,7 @@ RSpec.describe MT9::DetailRecord do
     context "full account number" do
       let(:account_number) { "1231130002145990" }
 
-      it "outputs correct suffix" do
+      it "outputs correct row data" do
         expect(subject.generate).to include(
           "1312311300021459900520000001000This Party          000000000000"\
           "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
@@ -53,9 +53,19 @@ RSpec.describe MT9::DetailRecord do
     context "when given transaction_code as an int" do
       let(:transaction_code) { 51 }
 
-      it "pads the space correctly" do
+      it "prepends 0" do
         expect(subject.generate).to include(
           "13123113000214598 0510000001000This Party          000000000000"\
+          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
+      end
+    end
+
+    context "when amount is small" do
+      let(:amount) { 1 }
+
+      it "right adjusts the amount appropriately" do
+        expect(subject.generate).to include(
+          "13123113000214598 0520000000001This Party          000000000000"\
           "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \n")
       end
     end

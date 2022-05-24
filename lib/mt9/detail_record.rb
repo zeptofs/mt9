@@ -1,14 +1,7 @@
 # frozen_string_literal: true
 
 module MT9
-  class DetailRecord < Fixy::Record
-    include Fixy::Formatter::Alphanumeric
-
-    DEBIT_TRANSACTION_CODES = ["000"].freeze
-    CREDIT_TRANSACTION_CODES = ["051", "052"].freeze
-
-    set_record_length 160
-
+  class DetailRecord < BaseRecord
     field :record_type,                  2, '1-2',     :alphanumeric
     field :account_number,              16, '3-18',    :alphanumeric
     field :transaction_code,             3, '19-21',   :alphanumeric
@@ -36,7 +29,7 @@ module MT9
     end
 
     def record_type
-      "13"
+      "13" # Identifies this as a Detail Record
     end
 
     def account_number
@@ -56,7 +49,7 @@ module MT9
     end
 
     def this_party_reference
-      "000000000000"
+      "000000000000" # From ASB Docs: "this field should be all zeros"
     end
 
     def this_party_code
