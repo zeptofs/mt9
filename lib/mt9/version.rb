@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module Mt9
+module MT9
   VERSION = "0.1.0"
 end

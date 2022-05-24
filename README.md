@@ -1,7 +1,7 @@
-# Mt9
+# MT9
 
-Mt9 is a data standard used within the NZ banking industry for the creation of Bulk Payments and Receipts. It is ASB's preferred data standard.
-The Mt9 data standard is supported by Windows-based PCs and mainframes. ASB's FastNet Business accepts the following import file standards:
+MT9 is a data standard used within the NZ banking industry for the creation of Bulk Payments and Receipts. It is ASB's preferred data standard.
+The MT9 data standard is supported by Windows-based PCs and mainframes. ASB's FastNet Business accepts the following import file standards:
 - Each record in the file must be 160 characters in length.
 - The file must contain a header, a record line for each transaction and a trailer.
 - Fields declared as fillers must be space filled.
