@@ -4,7 +4,7 @@ module MT9
   class HeaderRecord < BaseRecord
     set_line_ending Fixy::Record::LINE_ENDING_CRLF
 
-    attr_reader :file_type, :account_number, :due_date, :client_short_name
+    attr_reader :file_type, :account_number, :client_short_name
 
     field :file_type, 2, "1-2", :alphanumeric
     field :account_number, 16, "3-18", :alphanumeric

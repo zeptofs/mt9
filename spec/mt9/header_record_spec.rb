@@ -6,7 +6,7 @@ RSpec.describe MT9::HeaderRecord do
       file_type: "12",
       account_number: "123456789012345",
       due_date: Date.parse("25/12/2020"),
-      client_short_name: "ACME Pty Ltd"
+      client_short_name: "ACME Pty Ltd",
     }
   end
 

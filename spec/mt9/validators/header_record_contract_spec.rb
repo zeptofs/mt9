@@ -8,7 +8,7 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
       file_type: "12",
       account_number: "123456789012345",
       due_date: Date.parse("12/03/2021"),
-      client_short_name: "ACME Pty Ltd"
+      client_short_name: "ACME Pty Ltd",
     }
   end
 
