@@ -13,8 +13,8 @@ module MT9
     field :client_short_name, 20, "32-51", :alphanumeric
     field :filler109, 109, "52-160", :alphanumeric
 
-    field_value :filler5, SPACE * 5
-    field_value :filler109, SPACE * 109
+    field_value :filler5, SPACE
+    field_value :filler109, SPACE
 
     def initialize(...)
       validator = Validators::HeaderRecordContract.new
@@ -24,6 +24,10 @@ module MT9
       result.to_h.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
+    end
+
+    def due_date
+      @due_date.strftime("%C%y%m%d") # CCYYMMDD
     end
   end
 end

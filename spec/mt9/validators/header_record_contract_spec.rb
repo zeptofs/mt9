@@ -7,7 +7,7 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
     {
       file_type: "12",
       account_number: "123456789012345",
-      due_date: "120321",
+      due_date: Date.parse("12/03/2021"),
       client_short_name: "ACME Pty Ltd"
     }
   end
@@ -18,11 +18,6 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
 
   it "validates with a 16 digit account number" do
     header_record[:account_number] = "1234567890123456"
-    expect(result).to be_success
-  end
-
-  it "validates with a 8 digit due date" do
-    header_record[:due_date] = "12032021"
     expect(result).to be_success
   end
 
@@ -52,19 +47,9 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
       expect(result.errors[:account_number]).to eq(["must be 15 or 16 numeric characters"])
     end
 
-    it "validates a short due date" do
-      header_record[:due_date] = "213"
-      expect(result.errors[:due_date]).to eq(["must be 6 or 8 numeric characters"])
-    end
-
-    it "validates a 7 digit due date" do
-      header_record[:due_date] = "1234567"
-      expect(result.errors[:due_date]).to eq(["must be 6 or 8 numeric characters"])
-    end
-
-    it "validates a long due date" do
-      header_record[:due_date] = "202105114"
-      expect(result.errors[:due_date]).to eq(["must be 6 or 8 numeric characters"])
+    it "validates an non-date due date" do
+      header_record[:due_date] = "20201224"
+      expect(result.errors[:due_date]).to eq(["must be a date"])
     end
 
     it "validates a long client short name" do

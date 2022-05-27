@@ -5,7 +5,7 @@ RSpec.describe MT9::HeaderRecord do
     {
       file_type: "12",
       account_number: "123456789012345",
-      due_date: "251220",
+      due_date: Date.parse("25/12/2020"),
       client_short_name: "ACME Pty Ltd"
     }
   end
@@ -14,14 +14,13 @@ RSpec.describe MT9::HeaderRecord do
     subject(:result) { described_class.new(**header_record).generate }
 
     it "creates correctly formatted string" do
-      expect(result).to eq("12123456789012345 251220       ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
+      expect(result).to eq("12123456789012345 20201225     ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
     end
 
-    it "creates correctly formatted string with a long account number and due date" do
+    it "creates correctly formatted string with a long account number" do
       header_record[:account_number] = "1234567890123456"
-      header_record[:due_date] = "25122020"
 
-      expect(result).to eq("12123456789012345625122020     ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
+      expect(result).to eq("12123456789012345620201225     ACME Pty Ltd                                                                                                                     \r\n") # rubocop:disable Layout/LineLength
     end
   end
 
