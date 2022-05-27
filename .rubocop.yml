@@ -9,8 +9,6 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: false
   NewCops: disable
-  Exclude:
-    - '.rspec_status'
 
 #################### Gemspec ##########################
 
