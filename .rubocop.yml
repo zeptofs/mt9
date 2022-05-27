@@ -424,7 +424,7 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
 Style/ClassVars:
-  Enabled: t rue
+  Enabled: true
 
 Style/CollectionMethods:
   Enabled: true
