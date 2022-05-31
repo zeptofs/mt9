@@ -24,15 +24,6 @@ RSpec.describe MT9::HeaderRecord do
         "                                                                      \r\n")
     end
 
-    context "with a long account number" do
-      let(:account_number) { "1234567890123456" }
-
-      it "creates correctly formatted string with a long account number" do
-        expect(result).to eq("12123456789012345620201225     ACME Pty Ltd                                             "\
-          "                                                                        \r\n")
-      end
-    end
-
     context "with no client short name" do
       let(:client_short_name) { "" }
 
@@ -47,7 +38,7 @@ RSpec.describe MT9::HeaderRecord do
 
       it "raises ValidationError" do
         expect { result }.to \
-          raise_error(MT9::ValidationError, "Validation failed: account_number must be 15 or 16 numeric characters")
+          raise_error(MT9::ValidationError, "Validation failed: account_number length must be 15")
       end
     end
   end

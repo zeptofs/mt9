@@ -5,7 +5,7 @@ module MT9
     class HeaderRecordContract < BaseContract
       schema do
         required(:file_type).filled(:string, included_in?: MT9::Values::FILE_TYPES)
-        required(:account_number).filled(:string)
+        required(:account_number).filled(:string, size?: 15) # Only 2 digit suffix allowed
         required(:due_date).filled(:date)
         optional(:client_short_name).value(:string, size?: 0..20)
       end
