@@ -11,6 +11,7 @@ module MT9
       end
 
       rule(:account_number).validate(:is_account_number?)
+      rule(:client_short_name).validate(:only_valid_characters?)
     end
   end
 end
