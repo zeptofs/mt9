@@ -18,6 +18,7 @@ module MT9
     field :other_party_particulars,     12, "145-156", :alphanumeric
     field :end_filler,                   4, "157-160", :alphanumeric
     # TODO[T2][NZ] Expand / add more appropriate formats once other PR is merged.
+set_line_ending Fixy::Record::LINE_ENDING_CRLF
 
     def initialize(account_number:, transaction_code:, amount:, this_party:, other_party:)
       @account_number = account_number
