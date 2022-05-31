@@ -18,7 +18,11 @@ module MT9
     field :other_party_particulars,     12, "145-156", :alphanumeric
     field :end_filler,                   4, "157-160", :alphanumeric
     # TODO[T2][NZ] Expand / add more appropriate formats once other PR is merged.
-set_line_ending Fixy::Record::LINE_ENDING_CRLF
+
+    field_value :filler, -> { " " }
+    field_value :end_filler, -> { "    " }
+
+    set_line_ending Fixy::Record::LINE_ENDING_CRLF
 
     def initialize(account_number:, transaction_code:, amount:, this_party:, other_party:)
       @account_number = account_number
@@ -30,11 +34,11 @@ set_line_ending Fixy::Record::LINE_ENDING_CRLF
     end
 
     def record_type
-      "13" # Identifies this as a Detail Record
+      MT9::Values::DETAIL_RECORD_TYPE
     end
 
     def account_number
-      @account_number.to_s.ljust(16, " ")
+      @account_number.to_s
     end
 
     def transaction_code
@@ -46,7 +50,7 @@ set_line_ending Fixy::Record::LINE_ENDING_CRLF
     end
 
     def this_party_name
-      @this_party[:name].to_s.ljust(20, " ")
+      @this_party[:name].to_s
     end
 
     def this_party_reference
@@ -54,39 +58,31 @@ set_line_ending Fixy::Record::LINE_ENDING_CRLF
     end
 
     def this_party_code
-      @this_party[:code].to_s.ljust(12, " ")
+      @this_party[:code].to_s
     end
 
     def this_party_alpha_reference
-      @this_party[:alpha_reference].to_s.ljust(12, " ")
+      @this_party[:alpha_reference].to_s
     end
 
     def this_party_particulars
-      @this_party[:particulars].to_s.ljust(12, " ")
-    end
-
-    def filler
-      " "
+      @this_party[:particulars].to_s
     end
 
     def other_party_name
-      @other_party[:name].to_s.ljust(20, " ")
+      @other_party[:name].to_s
     end
 
     def other_party_code
-      @other_party[:code].to_s.ljust(12, " ")
+      @other_party[:code].to_s
     end
 
     def other_party_alpha_reference
-      @other_party[:alpha_reference].to_s.ljust(12, " ")
+      @other_party[:alpha_reference].to_s
     end
 
     def other_party_particulars
-      @other_party[:particulars].to_s.ljust(12, " ")
-    end
-
-    def end_filler
-      "    "
+      @other_party[:particulars].to_s
     end
   end
 end

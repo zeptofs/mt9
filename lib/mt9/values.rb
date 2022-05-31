@@ -9,5 +9,6 @@ module MT9
     FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
     DEBIT_TRANSACTION_CODES = ["000"].freeze
     CREDIT_TRANSACTION_CODES = %w[051 052].freeze
+    DETAIL_RECORD_TYPE = "13"
   end
 end
