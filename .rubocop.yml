@@ -591,6 +591,8 @@ Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: false
 Layout/ExtraSpacing:
   Enabled: true
+  Exclude:
+    - 'lib/mt9/header_record.rb'
 Layout/FirstArgumentIndentation:
   Enabled: true
 Layout/FirstArrayElementIndentation:

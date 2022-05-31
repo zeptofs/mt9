@@ -17,14 +17,6 @@ RSpec.describe MT9::Validators::TrailerRecordContract do
     expect(result).to be_success
   end
 
-  # context "with a short hash total" do
-  #   let(:hash_total) { 345_678_901 }
-
-  #   it "shows an error" do
-  #     expect(result.errors[:hash_total]).to eq(["must have atleast 11 digits"])
-  #   end
-  # end
-
   context "with a long total amount" do
     let(:total_amount) { 123_987_654_321_123 }
 
