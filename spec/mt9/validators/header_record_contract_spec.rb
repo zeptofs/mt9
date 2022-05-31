@@ -16,11 +16,6 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
     expect(result).to be_success
   end
 
-  it "validates with a 16 digit account number" do
-    header_record[:account_number] = "1234567890123456"
-    expect(result).to be_success
-  end
-
   it "validates a correct header record with no client short name" do
     header_record.delete(:client_short_name)
     expect(result).to be_success
@@ -39,12 +34,12 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
 
     it "validates a short account number" do
       header_record[:account_number] = "123456790"
-      expect(result.errors[:account_number]).to eq(["must be 15 or 16 numeric characters"])
+      expect(result.errors[:account_number]).to eq(["length must be 15"])
     end
 
     it "validates a long account number" do
       header_record[:account_number] = "12345678901234567"
-      expect(result.errors[:account_number]).to eq(["must be 15 or 16 numeric characters"])
+      expect(result.errors[:account_number]).to eq(["length must be 15"])
     end
 
     it "validates an non-date due date" do
@@ -55,6 +50,11 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
     it "validates a long client short name" do
       header_record[:client_short_name] = "ACME Transactions and Payments Proprietary Limited"
       expect(result.errors[:client_short_name]).to eq(["length must be within 0 - 20"])
+    end
+
+    it "validates a client short name with invalid characters" do
+      header_record[:client_short_name] = "ACME | ^ [{}]"
+      expect(result.errors[:client_short_name]).to eq(["must not contain invalid characters"])
     end
 
     it "validates a nil client short name" do
