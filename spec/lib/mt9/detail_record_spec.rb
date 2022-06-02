@@ -14,14 +14,14 @@ RSpec.describe MT9::DetailRecord do
         name: "This Party",
         code: "1234",
         alpha_reference: "alpha_ref",
-        particulars: "particulars"
+        particulars: "particulars",
       },
       other_party: {
         name: "Other Party Name, of long length",
         code: "3219876543210",
         alpha_reference: "other_alpha_ref",
-        particulars: "other_particulars"
-      }
+        particulars: "other_particulars",
+      },
     }
   end
 
