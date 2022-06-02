@@ -11,5 +11,7 @@ module MT9
     DEBIT_TRANSACTION_CODES = ["000"].freeze
     CREDIT_TRANSACTION_CODES = %w[051 052].freeze
     DETAIL_RECORD_TYPE = "13"
+
+    MAX_AMOUNT = 9_999_999_999
   end
 end

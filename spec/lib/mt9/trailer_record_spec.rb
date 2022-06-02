@@ -11,13 +11,13 @@ RSpec.describe MT9::TrailerRecord do
   end
 
   let(:hash_total) { 12_345_678_901 }
-  let(:total_amount) { 987_654_321_123 }
+  let(:total_amount) { 9_876_543_210 }
 
   describe "#generate" do
     subject(:result) { trailer_record.generate }
 
     it "creates correctly formatted string" do
-      expect(result).to eq("139912345678901      9876543211                                                           "\
+      expect(result).to eq("139912345678901      9876543210                                                           "\
         "                                                                      \r\n")
     end
 
@@ -25,7 +25,7 @@ RSpec.describe MT9::TrailerRecord do
       let(:hash_total) { 9_123_345_678_901 }
 
       it "only allows last 11 digits" do
-        expect(result).to eq("139923345678901      9876543211                                                         "\
+        expect(result).to eq("139923345678901      9876543210                                                         "\
           "                                                                        \r\n")
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe MT9::TrailerRecord do
 
       it "raises ValidationError" do
         expect { result }.to \
-          raise_error(MT9::ValidationError, "Validation failed: total_amount must not have more than 12 digits")
+          raise_error(MT9::ValidationError, "Validation failed: total_amount must be less than or equal to 9999999999")
       end
     end
   end
