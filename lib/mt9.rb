@@ -9,6 +9,7 @@ require "mt9/validators/header_record_contract"
 require "mt9/validators/trailer_record_contract"
 require "mt9/base_record"
 require "mt9/header_record"
+require "mt9/detail_record"
 require "mt9/trailer_record"
 require "mt9/version"
 

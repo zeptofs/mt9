@@ -1542,3 +1542,7 @@ Style/YodaCondition:
   Enabled: true
 Style/ZeroLengthPredicate:
   Enabled: false
+
+Layout/ExtraSpacing:
+  Exclude:
+    - 'lib/mt9/detail_record.rb'
