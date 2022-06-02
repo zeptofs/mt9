@@ -8,6 +8,7 @@ require "mt9/validators/base_contract"
 require "mt9/validators/header_record_contract"
 require "mt9/base_record"
 require "mt9/header_record"
+require "mt9/detail_record"
 require "mt9/version"
 
 module MT9
