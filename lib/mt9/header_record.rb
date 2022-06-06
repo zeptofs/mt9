@@ -7,7 +7,7 @@ module MT9
     attr_reader :file_type, :account_number, :client_short_name
 
     field :file_type,         2,   "1-2",    :alphanumeric
-    field :account_number,   15,   "3-17",   :alphanumeric
+    field :account_number,    15,  "3-17",   :alphanumeric
     field(:filler1,           1,   "18",     :alphanumeric) { "" }
     field(:due_date,          8,   "19-26",  :alphanumeric) { @due_date.strftime("%C%y%m%d") }
     field(:filler5,           5,   "27-31",  :alphanumeric) { "" }

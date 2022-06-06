@@ -4,21 +4,21 @@ module MT9
   module Validators
     class DetailRecordContract < BaseContract
       schema do
-        required(:account_number).filled(:string, size?: 15..16)
+        required(:account_number).filled(:string)
         required(:transaction_code).filled(:string, included_in?: MT9::Values::ALL_TRANSACTION_CODES)
         required(:this_party).schema do
           required(:name).filled(:string)
           required(:code).filled(:string)
-          required(:alpha_reference).filled(:string)
-          required(:particulars).filled(:string)
+          optional(:alpha_reference).filled(:string)
+          optional(:particulars).filled(:string)
         end
         required(:other_party).schema do
           required(:name).filled(:string)
-          required(:code).filled(:string)
-          required(:alpha_reference).filled(:string)
-          required(:particulars).filled(:string)
+          optional(:code).filled(:string)
+          optional(:alpha_reference).filled(:string)
+          optional(:particulars).filled(:string)
         end
-        required(:amount).filled(:integer, lt?: 10_000_000_000, gt?: 0)
+        required(:amount).filled(:integer, lteq?: MT9::Values::MAX_AMOUNT, gt?: 0)
       end
 
       rule(this_party: :name).validate(:only_valid_characters?)

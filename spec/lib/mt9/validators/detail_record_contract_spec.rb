@@ -40,12 +40,12 @@ RSpec.describe MT9::Validators::DetailRecordContract do
 
     it "validates a short account number" do
       detail_record[:account_number] = "123456790"
-      expect(result.errors[:account_number]).to eq(["length must be within 15 - 16"])
+      expect(result.errors[:account_number]).to eq(["must be 15 or 16 numeric characters"])
     end
 
     it "validates a long account number" do
       detail_record[:account_number] = "12345678901234567"
-      expect(result.errors[:account_number]).to eq(["length must be within 15 - 16"])
+      expect(result.errors[:account_number]).to eq(["must be 15 or 16 numeric characters"])
     end
 
     %i[this_party other_party].each do |party|
@@ -64,7 +64,7 @@ RSpec.describe MT9::Validators::DetailRecordContract do
 
     it "validates amount is less than max amount of 10 million" do
       detail_record[:amount] = 10_000_000_000
-      expect(result.errors[:amount]).to eq(["must be less than 10000000000"])
+      expect(result.errors[:amount]).to eq(["must be less than or equal to 9999999999"])
     end
 
     it "validates amount is positive" do
