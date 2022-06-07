@@ -18,15 +18,15 @@ module MT9
     def add_transaction(**kwargs)
       transaction_args = build_transaction_args(kwargs)
 
-      unless valid_transaction_code?(transaction_args[:transaction_code])
-        raise ArgumentError, "Invalid transaction code"
-      end
-
-      if transaction_args[:amount] + total_amount > MT9::Values::MAX_AMOUNT
-        raise RunTimeError "Batch total amount exceeds max amount: #{MT9::Values::MAX_AMOUNT} cents"
-      end
-
       detail_record = DetailRecord.new(transaction_args)
+
+      unless valid_transaction_code?(transaction_args[:transaction_code])
+        raise ArgumentError, "Invalid transaction code for #{self.class}"
+      end
+
+      if transaction_args[:amount] + total_amount > Values::MAX_AMOUNT
+        raise "Batch total amount exceeds max amount: #{Values::MAX_AMOUNT} cents"
+      end
 
       @total_amount += transaction_args[:amount]
 
@@ -68,11 +68,11 @@ module MT9
       }
     end
 
-    def default_transaction_code
+    def file_type
       raise NotImplementedError
     end
 
-    def file_type
+    def default_transaction_code
       raise NotImplementedError
     end
 

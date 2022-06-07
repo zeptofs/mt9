@@ -15,8 +15,6 @@ RSpec.describe MT9 do
 
   describe "#batch_credits" do
     subject(:batch) { MT9.batch_credits(**batch_args) }
-    let(:first_detail_record) { batch.detail_records[0] }
-    let(:transaction2_transaction_code) { "052" }
 
     it "intializes an instance of MT9::CreditBatch" do
       expect(batch).to be_a(MT9::CreditBatch)

@@ -1,5 +1,4 @@
-20123113000214500 031121       test co                                                                                                                          
-13123009000012300 0000000000100PayerName 0         000000000000Payercde0   PayerRef0   PayerPrt0    PayeeName           Payeecde    PayeeRef    PayeePrt        
-13123009000012300 0000000000200PayerName 1         000000000000Payercde1   PayerRef1   PayerPrt1    PayeeName           Payeecde    PayeeRef    PayeePrt        
-13123009000012300 0000000000300PayerName 2         000000000000Payercde2   PayerRef2   PayerPrt2    PayeeName           Payeecde    PayeeRef    PayeePrt        
-139990270000369             600                                                                                                                                 
+20224444777777722 20200504     ACME Pty Ltd                                                                                                                     
+13123456789012345 0000000001000This Name           000000000000This Code   This Alpha  This Particu ACME Pty Ltd        Other Code  Other Alpha Other Partic    
+1311000012345678900000000005000This Name           000000000000This Code   This Alpha  This Particu Other Name          Other Code  Other Alpha Other Partic    
+139934568232514      0000006000                                                                                                                                 
