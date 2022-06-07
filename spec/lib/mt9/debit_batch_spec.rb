@@ -18,13 +18,6 @@ RSpec.describe MT9::DebitBatch do
       this_party: {
         name: "This Name",
         code: "This Code",
-        alpha_reference: "This Alpha",
-        particulars: "This Particulars",
-      },
-      other_party: {
-        code: "Other Code",
-        alpha_reference: "Other Alpha",
-        particulars: "Other Particulars",
       },
     }
   end
