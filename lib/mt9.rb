@@ -18,7 +18,6 @@ require "mt9/debit_batch"
 require "mt9/version"
 
 module MT9
-  # TODO Simplify if needed
   def self.batch_credits(...)
     MT9::CreditBatch.new(...)
   end
