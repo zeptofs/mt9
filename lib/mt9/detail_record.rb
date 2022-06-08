@@ -21,15 +21,6 @@ module MT9
 
     set_line_ending Fixy::Record::LINE_ENDING_CRLF
 
-    def initialize(account_number:, transaction_code:, amount:, this_party:, other_party:)
-      @account_number = account_number
-      @transaction_code = transaction_code
-      @this_party = this_party
-      @other_party = other_party
-      @amount = amount
-      # TODO[T2][NZ] Add DryRB validations / contract here to ensure integrity of incoming data
-    end
-
     def record_type
       MT9::Values::DETAIL_RECORD_TYPE
     end

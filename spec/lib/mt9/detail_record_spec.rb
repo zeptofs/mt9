@@ -52,17 +52,6 @@ RSpec.describe MT9::DetailRecord do
       end
     end
 
-    context "when given transaction_code as an int" do
-      let(:transaction_code) { 51 }
-
-      it "prepends 0" do
-        expect(detail_record.generate).to include(
-          "13123113000214598 0510000001000This Party          000000000000"\
-          "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \r\n",
-        )
-      end
-    end
-
     context "when amount is small" do
       let(:amount) { 1 }
 
