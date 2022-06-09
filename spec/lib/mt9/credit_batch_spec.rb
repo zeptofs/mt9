@@ -61,6 +61,28 @@ RSpec.describe MT9::CreditBatch do
       expect(first_detail_record.other_party_name).to eq("Other Name")
     end
 
+    context "with only an other party code" do
+      let(:transaction1_args) do
+        {
+          account_number: "123456789012345",
+          amount: transaction1_amount,
+          this_party: {
+            name: "This Name",
+            code: "This Code",
+          },
+          other_party: {
+            code: "Other Code",
+          },
+        }
+      end
+
+      it "still sets other party name correctly" do
+        batch.add_transaction(**transaction1_args)
+
+        expect(first_detail_record.other_party_name).to eq("ACME Pty Ltd")
+      end
+    end
+
     context "with an invalid transaction code" do
       let(:transaction2_code) { "000" }
 
