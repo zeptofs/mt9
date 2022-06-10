@@ -69,15 +69,21 @@ module MT9
     end
 
     def file_type
+      # :nocov:
       raise NotImplementedError
+      # :nocov:
     end
 
     def default_transaction_code
+      # :nocov:
       raise NotImplementedError
+      # :nocov:
     end
 
     def valid_transaction_code?(transaction_code)
+      # :nocov:
       raise NotImplementedError
+      # :nocov:
     end
   end
 end
