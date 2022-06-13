@@ -7,11 +7,7 @@ module MT9
     set_record_length 160
 
     def initialize(...)
-      # :nocov:
-      # rubocop:disable Layout/EmptyLineAfterGuardClause
       raise NotImplementedError, "Only allowed from subclass" if self.class == BaseRecord
-      # rubocop:enable Layout/EmptyLineAfterGuardClause
-      # :nocov:
 
       begin
         validator_class = Object.const_get "MT9::Validators::#{self.class.name.split('::').last}Contract"
