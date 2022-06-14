@@ -35,9 +35,14 @@ Require the gem
 require 'mt9'
 ```
 
-Unlike ABA, MT9 requires that all credits must be grouped together in the same credit file, and all debits in the same debit file. Two methods are exposed to create a credit (`MT9#batch_credits`) or debit batch (`MT9#batch_debits`)
+Unlike ABA, MT9 requires that all credits must be grouped together in the same credit file, and all debits in the same debit file. Two methods `MT9#batch_credits` and `MT9#batch_debits` are exposed to create a credit or debit batch respectively.
 
 When transactions are added to the batch object, their transaction code is automatically set for the type of batch they're in (either `051` for credit batches or `000` for debit batches). [List of valid transaction codes](https://github.com/zeptofs/mt9/blob/main/lib/mt9/values.rb#L14)
+
+> **Note**
+> A single batch can only hold up to a maximum of 9,999,999,999 cents ($99,999,999.99) in total of transactions.
+
+Example usage:
 ```ruby
 # Initialise a credit batch
 credit_batch = MT9.batch_credits(
@@ -76,12 +81,12 @@ credit_batch.add_transaction(
 credit_batch.generate # To string
 ```
 
-The batch can also be generated straight to a file.ASB recommend a filename format like so `credit00batchyyMMddhhmmssFFF`. File extension can either be: `.txt`, `.dat` or `.mt9`
+The batch can also be generated straight to a file. ASB recommend a filename format like so `credit00batchyyMMddhhmmssFFF`. File extension can either be: `.txt`, `.dat` or `.mt9`.
 ```ruby
 credit_batch.generate_to_file("credit00batch#{DateTime.now.strftime("%y%m%d%H%M%S%L")}.mt9")
 ```
 
-Alternatively you can pass a block when creating the batch
+Alternatively you can pass a block when creating the batch:
 ```ruby
 debit_batch = MT9.batch_debits(
   account_number: "224444777777722",
@@ -100,9 +105,6 @@ debit_batch = MT9.batch_debits(
   end
 end
 ```
-
-> **Note**
-> A single batch can only hold up to a maximum of 9,999,999,999 cents ($99,999,999.99) in total of transactions.
 
 Trying to create an invalid batch or transaction will raise a `MT9::ValidationError`. You can access the result of the validation by calling `#result` on the exception, which returns a [`Dry::Validation::Result`](https://rubydoc.info/gems/dry-validation/Dry/Validation/Result) object.
 
