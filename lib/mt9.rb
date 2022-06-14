@@ -12,9 +12,20 @@ require "mt9/base_record"
 require "mt9/header_record"
 require "mt9/detail_record"
 require "mt9/trailer_record"
+require "mt9/batch"
+require "mt9/credit_batch"
+require "mt9/debit_batch"
 require "mt9/version"
 
 module MT9
+  def self.batch_credits(...)
+    MT9::CreditBatch.new(...)
+  end
+
+  def self.batch_debits(...)
+    MT9::DebitBatch.new(...)
+  end
+
   class ValidationError < StandardError
     attr_reader :result
 

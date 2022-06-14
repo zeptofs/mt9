@@ -5,7 +5,7 @@ module MT9
     class DetailRecordContract < BaseContract
       schema do
         required(:account_number).filled(:string)
-        required(:transaction_code).filled(:string, included_in?: MT9::Values::ALL_TRANSACTION_CODES)
+        required(:transaction_code).filled(:string, included_in?: Values::ALL_TRANSACTION_CODES)
         required(:this_party).schema do
           required(:name).filled(:string)
           required(:code).filled(:string)
@@ -18,7 +18,7 @@ module MT9
           optional(:alpha_reference).filled(:string)
           optional(:particulars).filled(:string)
         end
-        required(:amount).filled(:integer, lteq?: MT9::Values::MAX_AMOUNT, gt?: 0)
+        required(:amount).filled(:integer, lteq?: Values::MAX_AMOUNT, gt?: 0)
       end
 
       rule(this_party: :name).validate(:only_valid_characters?)

@@ -1,4 +1,4 @@
-12123113000631400 071020       asbd 2                                                                                                                           
-13123113000214500 0510000000102PayeeName 0         000000000000Payeecde0   PayeeRef0   PayeePrt0    PayerName           Payercde    PayerRef    PayerPrt        
-13123113000214500 0510000000201PayeeName 1         000000000000Payeecde1   PayeeRef1   PayeePrt1    PayerName           Payercde    PayerRef    PayerPrt        
-139962260004290             303                                                                                                                                 
+12224444777777722 20200504     ACME Pty Ltd                                                                                                                     
+13123456789012345 0510000001000This Name           000000000000This Code                            ACME Pty Ltd                                                
+1311000012345678900520000005000This Name           000000000000This Code   This Alpha  This Particu Other Name          Other Code  Other Alpha Other Partic    
+139934568232514      0000006000                                                                                                                                 
