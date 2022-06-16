@@ -12,7 +12,9 @@ module MT9
       begin
         validator_class = Object.const_get "MT9::Validators::#{self.class.name.split('::').last}Contract"
       rescue NameError
+        # :nocov:
         raise NotImplementedError, "#{self.class} does not have a corresponding contract"
+        # :nocov:
       end
 
       result = validator_class.new.call(...)
