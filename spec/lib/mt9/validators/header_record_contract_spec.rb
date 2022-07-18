@@ -16,6 +16,16 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
     expect(result).to be_success
   end
 
+  it "validates a correct header record with a blank client short name" do
+    header_record[:client_short_name] = ""
+    expect(result).to be_success
+  end
+
+  it "validates a correct header record with a nil client short name" do
+    header_record[:client_short_name] = nil
+    expect(result).to be_success
+  end
+
   it "validates a correct header record with no client short name" do
     header_record.delete(:client_short_name)
     expect(result).to be_success
@@ -55,11 +65,6 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
     it "validates a client short name with invalid characters" do
       header_record[:client_short_name] = "ACME | ^ [{}]"
       expect(result.errors[:client_short_name]).to eq(["must not contain invalid characters"])
-    end
-
-    it "validates a nil client short name" do
-      header_record[:client_short_name] = nil
-      expect(result.errors[:client_short_name]).to eq(["must be a string"])
     end
   end
 end

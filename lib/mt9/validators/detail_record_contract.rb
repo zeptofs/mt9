@@ -9,14 +9,14 @@ module MT9
         required(:this_party).schema do
           required(:name).filled(:string)
           required(:code).filled(:string)
-          optional(:alpha_reference).filled(:string)
-          optional(:particulars).filled(:string)
+          optional(:alpha_reference).maybe(:string)
+          optional(:particulars).maybe(:string)
         end
         required(:other_party).schema do
           required(:name).filled(:string)
-          optional(:code).filled(:string)
-          optional(:alpha_reference).filled(:string)
-          optional(:particulars).filled(:string)
+          optional(:code).maybe(:string)
+          optional(:alpha_reference).maybe(:string)
+          optional(:particulars).maybe(:string)
         end
         required(:amount).filled(:integer, lteq?: Values::MAX_AMOUNT, gt?: 0)
       end

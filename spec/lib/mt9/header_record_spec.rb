@@ -33,6 +33,15 @@ RSpec.describe MT9::HeaderRecord do
       end
     end
 
+    context "with a nil client short name" do
+      let(:client_short_name) { nil }
+
+      it "creates correctly formatted string" do
+        expect(result).to eq("12123456789012345 20201225                                                              "\
+          "                                                                        \r\n")
+      end
+    end
+
     context "with invalid header record args" do
       let(:account_number) { "1231231243123" }
 
