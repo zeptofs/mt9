@@ -14,5 +14,7 @@ module MT9
     ALL_TRANSACTION_CODES = (DEBIT_TRANSACTION_CODES | CREDIT_TRANSACTION_CODES).freeze
 
     MAX_AMOUNT = 9_999_999_999 # Due to detail record amount and trailer record total_amount only allowing 10 digits
+
+    ALLOWED_ALPHANUMERIC_CHARS = /^[\w\(\+\$\*\!\)\;\-\/\?\:\'\"\=\&\<\>\.\,\%\_\#\@\ ]*$/.freeze
   end
 end
