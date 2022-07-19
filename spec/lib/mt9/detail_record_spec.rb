@@ -28,10 +28,10 @@ RSpec.describe MT9::DetailRecord do
   end
   let(:other_party) do
     {
-      name: "Other Party Name, of long length"[0...20],
+      name: "Other Party Name, of",
       code: "321987654321",
-      alpha_reference: "other_alpha_ref"[0...12],
-      particulars: "other_particulars"[0...12],
+      alpha_reference: "other_alpha_",
+      particulars: "other_partic",
     }
   end
 
@@ -81,7 +81,7 @@ RSpec.describe MT9::DetailRecord do
 
       let(:other_party) do
         {
-          name: "Other Party Name, of long length"[0...20],
+          name: "Other Party Name, of",
           code: "",
           alpha_reference: "",
           particulars: "",
@@ -108,7 +108,7 @@ RSpec.describe MT9::DetailRecord do
 
       let(:other_party) do
         {
-          name: "Other Party Name, of long length"[0...20],
+          name: "Other Party Name, of",
           code: nil,
           alpha_reference: nil,
           particulars: nil,

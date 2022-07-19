@@ -32,13 +32,13 @@ RSpec.describe MT9::CreditBatch do
         name: "This Name",
         code: "This Code",
         alpha_reference: "This Alpha",
-        particulars: "This Particulars"[0...12],
+        particulars: "This Particu",
       },
       other_party: {
         name: "Other Name",
         code: "Other Code",
         alpha_reference: "Other Alpha",
-        particulars: "Other Particulars"[0...12],
+        particulars: "Other Partic",
       },
     }
   end
