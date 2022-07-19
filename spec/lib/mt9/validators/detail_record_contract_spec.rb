@@ -18,7 +18,7 @@ RSpec.describe MT9::Validators::DetailRecordContract do
       name: "This Name",
       code: "This Code",
       alpha_reference: "This Alpha",
-      particulars: "This Particulars",
+      particulars: "This Particulars"[0...12],
     }
   end
 
@@ -27,7 +27,7 @@ RSpec.describe MT9::Validators::DetailRecordContract do
       name: "Other Name",
       code: "Other Code",
       alpha_reference: "Other Alpha",
-      particulars: "Other Particulars",
+      particulars: "Other Particulars"[0...12],
     }
   end
 
@@ -59,8 +59,22 @@ RSpec.describe MT9::Validators::DetailRecordContract do
     %i[this_party other_party].each do |party|
       %i[name code alpha_reference particulars].each do |field|
         it "is invalid when #{party} #{field} contains invalid characters" do
-          detail_record[party][field] = "ACME | ^ [{}]"
+          detail_record[party][field] = "ACM | ^ [{}]"
           expect(result.errors[party][field]).to eq(["must not contain invalid characters"])
+        end
+      end
+
+      %i[name].each do |field|
+        it "is invalid when #{party} #{field} contains more than 20 characters" do
+          detail_record[party][field] = "This is more than twenty characters"
+          expect(result.errors[party][field]).to eq(["size cannot be greater than 20"])
+        end
+      end
+
+      %i[code alpha_reference particulars].each do |field|
+        it "is invalid when #{party} #{field} contains more than 12 characters" do
+          detail_record[party][field] = "This is more than twelve characters"
+          expect(result.errors[party][field]).to eq(["size cannot be greater than 12"])
         end
       end
     end

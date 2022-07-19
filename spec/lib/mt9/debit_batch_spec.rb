@@ -31,13 +31,13 @@ RSpec.describe MT9::DebitBatch do
         name: "This Name",
         code: "This Code",
         alpha_reference: "This Alpha",
-        particulars: "This Particulars",
+        particulars: "This Particulars"[0...12],
       },
       other_party: {
         name: "Other Name",
         code: "Other Code",
         alpha_reference: "Other Alpha",
-        particulars: "Other Particulars",
+        particulars: "Other Particulars"[0...12],
       },
     }
   end
