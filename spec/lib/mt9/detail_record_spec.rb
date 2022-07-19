@@ -10,24 +10,30 @@ RSpec.describe MT9::DetailRecord do
       account_number: account_number,
       transaction_code: transaction_code,
       amount: amount,
-      this_party: {
-        name: "This Party",
-        code: "1234",
-        alpha_reference: "alpha_ref",
-        particulars: "particulars",
-      },
-      other_party: {
-        name: "Other Party Name, of long length",
-        code: "3219876543210",
-        alpha_reference: "other_alpha_ref",
-        particulars: "other_particulars",
-      },
+      this_party: this_party,
+      other_party: other_party,
     }
   end
 
   let(:account_number) { "123113000214598" }
   let(:transaction_code) { "052" }
   let(:amount) { 1000 }
+  let(:this_party) do
+    {
+      name: "This Party",
+      code: "1234",
+      alpha_reference: "alpha_ref",
+      particulars: "particulars",
+    }
+  end
+  let(:other_party) do
+    {
+      name: "Other Party Name, of long length",
+      code: "3219876543210",
+      alpha_reference: "other_alpha_ref",
+      particulars: "other_particulars",
+    }
+  end
 
   describe "#generate" do
     context "with full account number" do
@@ -59,6 +65,60 @@ RSpec.describe MT9::DetailRecord do
         expect(detail_record.generate).to include(
           "13123113000214598 0520000000001This Party          000000000000"\
           "1234        alpha_ref   particulars  Other Party Name, of321987654321other_alpha_other_partic    \r\n",
+        )
+      end
+    end
+
+    context "when optional fields are blank" do
+      let(:this_party) do
+        {
+          name: "This Party",
+          code: "1234",
+          alpha_reference: "",
+          particulars: "",
+        }
+      end
+
+      let(:other_party) do
+        {
+          name: "Other Party Name, of long length",
+          code: "",
+          alpha_reference: "",
+          particulars: "",
+        }
+      end
+
+      it "outputs correct row data" do
+        expect(detail_record.generate).to include(
+          "13123113000214598 0520000001000This Party          000000000000"\
+          "1234                                 Other Party Name, of                                        \r\n",
+        )
+      end
+    end
+
+    context "when optional fields are nil" do
+      let(:this_party) do
+        {
+          name: "This Party",
+          code: "1234",
+          alpha_reference: nil,
+          particulars: nil,
+        }
+      end
+
+      let(:other_party) do
+        {
+          name: "Other Party Name, of long length",
+          code: nil,
+          alpha_reference: nil,
+          particulars: nil,
+        }
+      end
+
+      it "outputs correct row data" do
+        expect(detail_record.generate).to include(
+          "13123113000214598 0520000001000This Party          000000000000"\
+          "1234                                 Other Party Name, of                                        \r\n",
         )
       end
     end

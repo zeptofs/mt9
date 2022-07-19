@@ -12,7 +12,7 @@ AllCops:
 
 #################### Gemspec ##########################
 
-Gemspec/DateAssignment:
+Gemspec/DeprecatedAttributeAssignment:
   Enabled: false
 Gemspec/DuplicatedAssignment:
   Enabled: false

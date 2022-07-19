@@ -7,19 +7,27 @@ RSpec.describe MT9::Validators::DetailRecordContract do
     {
       account_number: "123456789012345",
       transaction_code: "052",
-      this_party: {
-        name: "This Name",
-        code: "This Code",
-        alpha_reference: "This Alpha",
-        particulars: "This Particulars",
-      },
-      other_party: {
-        name: "Other Name",
-        code: "Other Code",
-        alpha_reference: "Other Alpha",
-        particulars: "Other Particulars",
-      },
+      this_party: this_party,
+      other_party: other_party,
       amount: 1000,
+    }
+  end
+
+  let(:this_party) do
+    {
+      name: "This Name",
+      code: "This Code",
+      alpha_reference: "This Alpha",
+      particulars: "This Particulars",
+    }
+  end
+
+  let(:other_party) do
+    {
+      name: "Other Name",
+      code: "Other Code",
+      alpha_reference: "Other Alpha",
+      particulars: "Other Particulars",
     }
   end
 
@@ -55,6 +63,67 @@ RSpec.describe MT9::Validators::DetailRecordContract do
           expect(result.errors[party][field]).to eq(["must not contain invalid characters"])
         end
       end
+    end
+
+    context "when optional fields are omitted" do
+      let(:this_party) do
+        {
+          name: "This Name",
+          code: "This Code",
+        }
+      end
+
+      let(:other_party) do
+        {
+          name: "Other Name",
+        }
+      end
+
+      it { is_expected.to be_success }
+    end
+
+    context "when optional fields are nil" do
+      let(:this_party) do
+        {
+          name: "This Name",
+          code: "This Code",
+          alpha_reference: nil,
+          particulars: nil,
+        }
+      end
+
+      let(:other_party) do
+        {
+          name: "Other Name",
+          code: nil,
+          alpha_reference: nil,
+          particulars: nil,
+        }
+      end
+
+      it { is_expected.to be_success }
+    end
+
+    context "when optional fields are blank" do
+      let(:this_party) do
+        {
+          name: "This Name",
+          code: "This Code",
+          alpha_reference: "",
+          particulars: "",
+        }
+      end
+
+      let(:other_party) do
+        {
+          name: "Other Name",
+          code: "",
+          alpha_reference: "",
+          particulars: "",
+        }
+      end
+
+      it { is_expected.to be_success }
     end
 
     it "validates amount is integer" do

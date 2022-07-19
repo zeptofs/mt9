@@ -46,7 +46,7 @@ Example usage:
 ```ruby
 # Initialise a credit batch
 credit_batch = MT9.batch_credits(
-  account_number: "224444777777722", # Must be 15 digits
+  account_number: "224444777777722",  # Must be 15 digits
   due_date: Date.parse("4/5/2020"),
   client_short_name: "ACME Pty Ltd",  # Optional, highly recommended to fill
 )
