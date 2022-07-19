@@ -59,7 +59,7 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
 
     it "validates a long client short name" do
       header_record[:client_short_name] = "ACME Transactions and Payments Proprietary Limited"
-      expect(result.errors[:client_short_name]).to eq(["length must be within 0 - 20"])
+      expect(result.errors[:client_short_name]).to eq(["size cannot be greater than 20"])
     end
 
     it "validates a client short name with invalid characters" do
