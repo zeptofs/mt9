@@ -7,7 +7,7 @@ module MT9
         required(:file_type).filled(:string, included_in?: Values::FILE_TYPES)
         required(:account_number).filled(:string, size?: 15) # Only 2 digit suffix allowed
         required(:due_date).filled(:date)
-        optional(:client_short_name).maybe(:string, max_size?: 20)
+        optional(:client_short_name).maybe(:string, max_size?: Values::NAME_MAX_LENGTH)
       end
 
       rule(:account_number).validate(:is_account_number?)
