@@ -18,7 +18,7 @@ module MT9
       end
 
       result = validator_class.new.call(...)
-      raise MT9::ValidationError, result unless result.success?
+      raise ValidationError, "Validation failed: #{result.errors(full: true).messages.join(', ')}" if result.failure?
 
       result.to_h.each do |key, value|
         instance_variable_set("@#{key}", value)

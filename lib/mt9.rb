@@ -26,13 +26,5 @@ module MT9
     MT9::DebitBatch.new(...)
   end
 
-  class ValidationError < StandardError
-    attr_reader :result
-
-    def initialize(result)
-      @result = result
-      errors = result.errors(full: true).messages
-      super("Validation failed: #{errors.join(', ')}")
-    end
-  end
+  class ValidationError < StandardError; end
 end
