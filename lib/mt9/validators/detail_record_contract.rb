@@ -7,16 +7,16 @@ module MT9
         required(:account_number).filled(:string)
         required(:transaction_code).filled(:string, included_in?: Values::ALL_TRANSACTION_CODES)
         required(:this_party).schema do
-          required(:name).filled(:string, max_size?: 20)
-          required(:code).filled(:string, max_size?: 12)
-          optional(:alpha_reference).maybe(:string, max_size?: 12)
-          optional(:particulars).maybe(:string, max_size?: 12)
+          required(:name).filled(:string, max_size?: Values::NAME_MAX_LENGTH)
+          required(:code).filled(:string, max_size?: Values::DETAIL_FIELD_MAX_LENGTH)
+          optional(:alpha_reference).maybe(:string, max_size?: Values::DETAIL_FIELD_MAX_LENGTH)
+          optional(:particulars).maybe(:string, max_size?: Values::DETAIL_FIELD_MAX_LENGTH)
         end
         required(:other_party).schema do
-          required(:name).filled(:string, max_size?: 20)
-          optional(:code).maybe(:string, max_size?: 12)
-          optional(:alpha_reference).maybe(:string, max_size?: 12)
-          optional(:particulars).maybe(:string, max_size?: 12)
+          required(:name).filled(:string, max_size?: Values::NAME_MAX_LENGTH)
+          optional(:code).maybe(:string, max_size?: Values::DETAIL_FIELD_MAX_LENGTH)
+          optional(:alpha_reference).maybe(:string, max_size?: Values::DETAIL_FIELD_MAX_LENGTH)
+          optional(:particulars).maybe(:string, max_size?: Values::DETAIL_FIELD_MAX_LENGTH)
         end
         required(:amount).filled(:integer, lteq?: Values::MAX_AMOUNT, gt?: 0)
       end
