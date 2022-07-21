@@ -7,7 +7,7 @@ module MT9
     set_record_length 160
 
     def initialize(...)
-      raise NotImplementedError, "Only allowed from subclass" if self.class == BaseRecord
+      raise NotImplementedError, "Only allowed from subclass" if instance_of? BaseRecord
 
       begin
         validator_class = Object.const_get "MT9::Validators::#{self.class.name.split('::').last}Contract"
@@ -18,7 +18,7 @@ module MT9
       end
 
       result = validator_class.new.call(...)
-      raise MT9::ValidationError, result unless result.success?
+      raise ValidationError, "Validation failed: #{result.errors(full: true).messages.join(', ')}" if result.failure?
 
       result.to_h.each do |key, value|
         instance_variable_set("@#{key}", value)
