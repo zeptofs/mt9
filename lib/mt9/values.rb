@@ -10,7 +10,8 @@ module MT9
     DIRECT_DEBIT = "20"
     FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
 
-    ALLOWED_ALPHANUMERIC_CHARS = /^[\w\(\+\$\*\!\)\;\-\/\?\:\'\"\=\&\<\>\.\,\%\_\#\@\ ]*$/.freeze
+    ALLOWED_CHARS = %q(0-9a-zA-Z_+-@$!%&*./#=:;?,'"()<> )
+    ALLOWED_CHARS_PATTERN = /\A[#{ALLOWED_CHARS}]*\z/
     DETAIL_FIELD_MAX_LENGTH = 12
     DETAIL_RECORD_TYPE = "13"
     MAX_AMOUNT = 9_999_999_999 # Due to detail record amount and trailer record total_amount only allowing 10 digits
