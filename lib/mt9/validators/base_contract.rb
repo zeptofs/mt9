@@ -9,7 +9,7 @@ module MT9
       end
 
       register_macro(:only_valid_characters?) do
-        unless value.nil? || value =~ Values::ALLOWED_ALPHANUMERIC_CHARS
+        unless value.nil? || value =~ Values::ALLOWED_CHARS_PATTERN
           key.failure("must not contain invalid characters")
         end
       end
