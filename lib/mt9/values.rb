@@ -10,7 +10,7 @@ module MT9
     DIRECT_DEBIT = "20"
     FILE_TYPES = [DIRECT_CREDIT, DIRECT_DEBIT].freeze
 
-    ALLOWED_CHARS = %q(0-9a-zA-Z_+-@$!%&*./#=:?,'"()<> )
+    ALLOWED_CHARS = %q(0-9a-zA-Z_@$!%&*./#=:?,'"()<> +-)
     ALLOWED_CHARS_PATTERN = /\A[#{ALLOWED_CHARS}]*\z/.freeze
     DETAIL_FIELD_MAX_LENGTH = 12
     DETAIL_RECORD_TYPE = "13"
