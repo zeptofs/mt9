@@ -63,7 +63,7 @@ RSpec.describe MT9::Validators::HeaderRecordContract do
     end
 
     it "validates a client short name with invalid characters" do
-      header_record[:client_short_name] = "ACME | ^ [{}]"
+      header_record[:client_short_name] = "ACME|^[{}];"
       expect(result.errors[:client_short_name]).to eq(["must not contain invalid characters"])
     end
   end

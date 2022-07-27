@@ -59,7 +59,7 @@ RSpec.describe MT9::Validators::DetailRecordContract do
     %i[this_party other_party].each do |party|
       %i[name code alpha_reference particulars].each do |field|
         it "is invalid when #{party} #{field} contains invalid characters" do
-          detail_record[party][field] = "ACM | ^ [{}]"
+          detail_record[party][field] = "ACME|^[{}];"
           expect(result.errors[party][field]).to eq(["must not contain invalid characters"])
         end
       end
