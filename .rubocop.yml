@@ -1243,6 +1243,8 @@ Style/EvenOdd:
   Enabled: true
 Style/ExpandPathArguments:
   Enabled: true
+  Exclude:
+    - "bin/*"
 Style/ExplicitBlockArgument:
   Enabled: false
 Style/ExponentialNotation:
