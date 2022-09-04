@@ -14,13 +14,14 @@ RSpec.describe MT9::DebitBatch do
   let(:transaction1_args) do
     {
       account_number: "123456789012345",
-      amount: 1000,
+      amount: transaction1_amount,
       this_party: {
         name: "This Name",
         code: "This Code",
       },
     }
   end
+  let(:transaction1_amount) { 1000 }
 
   let(:transaction2_args) do
     {
@@ -50,6 +51,19 @@ RSpec.describe MT9::DebitBatch do
 
       expect(first_detail_record.transaction_code).to eq("000")
       expect(first_detail_record.other_party_name).to eq("ACME Pty Ltd")
+    end
+
+    context "that exceeds the batch max amount" do
+      let(:transaction1_amount) { 9_999_999_999 }
+
+      before do
+        batch.add_transaction(**transaction1_args)
+      end
+
+      it "raises a RuntimeError" do
+        expect { batch.add_transaction(**transaction2_args) }
+          .to raise_error(RuntimeError, "Batch total amount exceeds max amount: 9999999999 cents")
+      end
     end
   end
 
