@@ -12,8 +12,6 @@ AllCops:
 
 #################### Gemspec ##########################
 
-Gemspec/DeprecatedAttributeAssignment:
-  Enabled: false
 Gemspec/DuplicatedAssignment:
   Enabled: false
 Gemspec/OrderedDependencies:

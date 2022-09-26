@@ -121,9 +121,7 @@ RSpec.describe MT9::CreditBatch do
     end
 
     it "hash total should be sum of branch and unique numbers from each transaction" do
-      expect(batch.hash_total).to eq(
-        Integer(transaction1_args[:account_number][2..12]) + Integer(transaction2_args[:account_number][2..12]),
-      )
+      expect(batch.hash_total).to eq(34_569_124_690)
     end
 
     describe "#generate" do

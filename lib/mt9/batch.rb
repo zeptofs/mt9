@@ -31,7 +31,7 @@ module MT9
       @total_amount += transaction_args[:amount]
 
       # Hash total is sum of branch and unique number components of account number
-      @hash_total += Integer(transaction_args[:account_number][2..12])
+      @hash_total += Integer(transaction_args[:account_number][2..12], 10)
 
       @detail_records << detail_record
     end
